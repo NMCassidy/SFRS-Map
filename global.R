@@ -1,7 +1,6 @@
 #Read Dataset from shared drive
 dta<-readRDS("S:/G - Governance & Performance Mngmt/Research Team/Fire Research/Assessments-Rproject/Shiny -Leaflet/Shiny Tool/dataset")
 
-
 #Create domains by grouping indicators
 econ_vars<-c("deprived", "SIMD ranking for income", "SIMD ranking 2", "claiming", "claimant")
 Econ<-c("datazone_2001", "council", grep(paste(econ_vars, collapse = "|"), names(dta), value = TRUE))
