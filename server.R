@@ -11,7 +11,7 @@ impinds<-c("Emergency admissions rate per 100,000 2012", "Deliberate fire rate p
 shinyServer(
   function(input, output){
     
-  #read the required data and shape files
+  #read the required data and shape files from internet and shared drive
     dta_simd12_dz <- read.csv(file = "http://www.isdscotland.org/Products-and-Services/GPD-Support/Deprivation/SIMD/_docs/SIMD_2012/datazone_simd2012.csv")[,c(1,5)]
     SpPolysDF<-readRDS("S:/G - Governance & Performance Mngmt/Research Team/Fire Research/Assessments-Rproject/Shiny -Leaflet/LeafletPolygons.rds")
     map_dzs<-readRDS(file = "S:/G - Governance & Performance Mngmt/Research Team/Fire Research/Assessments-Rproject/data/dzs01_fort.rds")
@@ -19,7 +19,6 @@ shinyServer(
     
   #merge map_dzs and simd deciles to set for colours later
   #create colour function for leaflet
-  #frclrs<-merge(x = map_dzs[!duplicated(map_dzs$group), c(6,7)], y = dta_simd12_dz, by.x = "id", by.y = "Datazone", all = TRUE)   
     frclrs<-merge(x = map_dzs[!duplicated(map_dzs$id), c(6,7)], y = dta_simd12_dz, by.x = "id", by.y = "Datazone", all = TRUE)   
     SpPolysDF@data$scsimd2012decile<-frclrs$scsimd2012decile
     #Only needed this line if colorNumeric does not work
